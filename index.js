@@ -1,5 +1,6 @@
 const request = require('request');
 const dotenv = require('dotenv');
+const Feedly = require('./lib/feedly');
 dotenv.config();
 
 const setting = {
@@ -17,11 +18,11 @@ const params = {
   },
 };
 
-request('http://cloud.feedly.com/v3/streams/contents', params,
-function (err, response, body) {
-  if (!err && response.statusCode == 200) {
-  var info = JSON.parse(body);
-  console.log(info.stargazers_count + " Stars");
-  console.log(info.forks_count + " Forks");
-}
+Feedly.fetchCategory(request, params).then((result) => {
+  console.log(result);
+}).catch((err) => {
+  console.log(err);
+  if(err.status === 403){
+    
+  }
 });
