@@ -22,7 +22,4 @@ Feedly.fetchCategory(request, params).then((result) => {
   console.log(result);
 }).catch((err) => {
   console.log(err);
-  if(err.status === 403){
-    
-  }
 });
